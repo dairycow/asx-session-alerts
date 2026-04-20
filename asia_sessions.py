@@ -48,20 +48,19 @@ ASIA_EVENTS = [
     },
 ]
 
-
-def get_active_event(now: datetime):
-    for event in ASIA_EVENTS:
-        if now.time() == event["time"]:
-            return event
-    return None
+_last_alerted: dict[str, str] = {}
 
 
 def tick():
     now = datetime.now(CST)
     if now.weekday() >= 5:
         return
-    event = get_active_event(now)
-    if event:
-        message = f"**{event['label']}**\n> {event['context']}"
-        send_alert(message)
-        print(f"[{now} CST] Alert sent: {event['label']}")
+    key = now.strftime("%Y-%m-%d %H:%M")
+    for event in ASIA_EVENTS:
+        event_key = f"{key} {event['label']}"
+        if event["time"].hour == now.hour and event["time"].minute == now.minute:
+            if event_key not in _last_alerted:
+                _last_alerted[event_key] = key
+                message = f"**{event['label']}**\n> {event['context']}"
+                send_alert(message)
+                print(f"[{now} CST] Alert sent: {event['label']}")

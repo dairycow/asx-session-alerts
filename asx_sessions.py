@@ -29,24 +29,23 @@ JOURNAL_PROMPTS = [
     "What's one habit you want to improve for the next session?",
 ]
 
-
-def get_session_ending(now: datetime):
-    for session in SESSIONS:
-        if now.time() == session["end"]:
-            return session
-    return None
+_last_alerted: dict[str, str] = {}
 
 
 def tick():
     now = datetime.now(AEST)
     if now.weekday() >= 5:
         return
-    session = get_session_ending(now)
-    if session:
-        prompt = random.choice(JOURNAL_PROMPTS)
-        message = (
-            f"**{session['name']} session has ended!**\n\n"
-            f":pencil: *{prompt}*"
-        )
-        send_alert(message)
-        print(f"[{now}] Alert sent for {session['name']}")
+    key = now.strftime("%Y-%m-%d %H:%M")
+    for session in SESSIONS:
+        session_key = f"{key} {session['name']}"
+        if session["end"].hour == now.hour and session["end"].minute == now.minute:
+            if session_key not in _last_alerted:
+                _last_alerted[session_key] = key
+                prompt = random.choice(JOURNAL_PROMPTS)
+                message = (
+                    f"**{session['name']} session has ended!**\n\n"
+                    f":pencil: *{prompt}*"
+                )
+                send_alert(message)
+                print(f"[{now}] Alert sent for {session['name']}")
