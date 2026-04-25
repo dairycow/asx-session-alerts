@@ -15,18 +15,18 @@ SESSIONS = [
 ]
 
 JOURNAL_PROMPTS = [
-    "Rate your trading so far. What went well? What didn't?",
-    "Did you follow your trading plan this session?",
-    "What was your best trade this session and why?",
-    "What emotion did you feel most during this session?",
-    "Did you manage your risk well? What would you change?",
-    "Write one thing you learned from this session.",
-    "How disciplined were you with your entry/exit rules?",
-    "What setup are you watching for next session?",
-    "Did you size your positions appropriately?",
-    "What distracted you today and how did you handle it?",
-    "Was your FOMO under control? Any revenge trades?",
-    "What's one habit you want to improve for the next session?",
+    "Did you wait for the setup, or did you force an entry? Be honest.",
+    "Was your thesis written before you entered, or did you justify after the fact?",
+    "Did you cut at the stop — not near it, not past it — exactly at it?",
+    "Score your process adherence this session out of 6: thesis written, checklist met, stop placed, stop not moved, exited at stop/target, size from stop calculation.",
+    "What's your current phase, and did you only trade setups allowed in that phase?",
+    "Did you hit your daily loss limit (2%)? If so, are you done for the day?",
+    "Was there a FOMO entry? A stock already past your level that you chased anyway?",
+    "After your last loss, did you wait 30 min before considering a new entry — or did revenge creep in?",
+    "Did you calculate your numbers before the order — entry, stop, size, dollar risk, target?",
+    "No trade is also a trade. If nothing triggered, did you sit on your hands or force something?",
+    "What was your emotional state this session — calm, anxious, FOMO, revenge, bored, focused?",
+    "Which playbook principle did you execute best this session?",
 ]
 
 _last_alerted: dict[str, str] = {}
