@@ -7,11 +7,9 @@ from alerts import send_alert
 AEST = ZoneInfo("Australia/Sydney")
 
 SESSIONS = [
-    {"name": "Morning A", "end": time(11, 30)},
-    {"name": "Morning B", "end": time(12, 30)},
-    {"name": "Lunchtime", "end": time(13, 30)},
-    {"name": "Afternoon A", "end": time(15, 0)},
-    {"name": "Afternoon B", "end": time(16, 0)},
+    {"name": "Morning (10:00–11:30)", "end": time(11, 30)},
+    {"name": "Midday (11:30–14:00)", "end": time(14, 0)},
+    {"name": "Afternoon (14:00–15:45)", "end": time(15, 45)},
 ]
 
 JOURNAL_PROMPTS = [
